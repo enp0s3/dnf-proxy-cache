@@ -23,6 +23,7 @@ func New(port uint) Proxy {
 func (d DnfProxy) mainHandler() {
 
 }
+
 func (d DnfProxy) Start() error {
 	d.server = &http.Server{
 		Addr:           fmt.Sprintf(":%d", d.port),
@@ -36,5 +37,5 @@ func (d DnfProxy) Start() error {
 		fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
 	})
 
-	return d.server.ListenAndServe())
+	return d.server.ListenAndServe()
 }
