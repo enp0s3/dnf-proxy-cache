@@ -1,4 +1,7 @@
 # dnf-proxy-cache
+
+[![GitHub Actions](https://github.com/enp0s3/dnf-proxy-cache/workflows/Test/badge.svg)](https://github.com/enp0s3/dnf-proxy-cache)
+
 A simple DNF proxy cache server written in Go
 
 ## Architecture
