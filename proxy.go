@@ -21,8 +21,8 @@ package main
 
 import (
 	"fmt"
-	"html"
 	"net/http"
+	"os"
 	"time"
 )
 
@@ -53,7 +53,22 @@ func (d DnfProxy) Start() error {
 	}
 
 	http.HandleFunc("/hello", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Hello, %q", html.EscapeString(r.URL.Path))
+		var hostname string
+		var err error
+
+		if hostname, err = os.Hostname(); err != nil {
+			hostname = "anonymous host"
+		}
+
+		fmt.Fprintf(w, "Hello from %s\n", hostname)
+	})
+
+	http.HandleFunc("/readyz", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "OK")
+	})
+
+	http.HandleFunc("/livez", func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintf(w, "OK")
 	})
 
 	return d.server.ListenAndServe()
