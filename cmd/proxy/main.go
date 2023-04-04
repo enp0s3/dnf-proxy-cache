@@ -21,13 +21,14 @@ package main
 
 import (
 	"fmt"
+	"github.com/enp0s3/dnf-proxy-cache/pkg/dnfproxy"
 	"log"
 )
 
 func main() {
 	// parse some flags
 	// optional: init logging
-	proxy := New(8080)
+	proxy := dnfproxy.New(8080)
 
 	fmt.Println("Welcome to DNF proxy")
 	log.Fatal(proxy.Start())
